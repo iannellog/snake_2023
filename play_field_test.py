@@ -10,7 +10,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_N_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'N')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -20,7 +21,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_E_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'E')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -30,7 +32,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_S_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'S')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -40,7 +43,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_W_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'W')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -50,7 +54,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_NE_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'NE')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -60,7 +65,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_NW_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'NW')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -70,7 +76,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_SE_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'SE')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -80,7 +87,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_SW_valid_nofood(self):
         play_field = Play_field(10, 10, [], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'SW')
+        snake_head_position = [0, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -90,7 +98,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_S_novalid_nofood(self):
         play_field = Play_field(10, 10, [[1, 0]], [])
-        valid, new_position, food = play_field.check_move([0, 0], 'S')
+        snake_head_position = [2, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertFalse(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
@@ -100,7 +109,8 @@ class Play_field_test(unittest.TestCase):
 
     def test_check_move_S_valid_food(self):
         play_field = Play_field(10, 10, [], [[1, 0]])
-        valid, new_position, food = play_field.check_move([0, 0], 'S')
+        snake_head_position = [2, 0]
+        valid, new_position, food = play_field.check_move(snake_head_position, 'N')
         self.assertTrue(valid)
         self.assertGreaterEqual(new_position[0], 0, 'invalid snake position')
         self.assertLess(new_position[0], play_field.height, 'invalid snake position')
