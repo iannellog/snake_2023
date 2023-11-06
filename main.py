@@ -42,4 +42,7 @@ for m in game_info["moves"].split(' '):
         break
 
 # display play field and snake (including its path)
+print('moves:', game_info["moves"])
+print('snake body:', snake.body)
+print('snake tail:', snake.tail)
 print('End')
