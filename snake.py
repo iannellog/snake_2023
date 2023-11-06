@@ -85,22 +85,33 @@ class Snake:
                 raise ValueError(f'invalid horizontal move (new position={new_position}, snake head={body_copy[0]})')
 
         # actual check
-        if direction == [1, 1] and \
-                [(new_position[0]-1) % self.play_field_size[0], new_position[1]] in body_copy and \
-                [(new_position[0]), (new_position[1]-1) % self.play_field_size[1]] in body_copy:  # move SE
-            return False
-        elif direction == [1, -1] and \
-                [(new_position[0]-1) % self.play_field_size[0], new_position[1]] in body_copy and \
-                [(new_position[0]), (new_position[1]+1) % self.play_field_size[1]] in body_copy:  # move SW
-            return False
-        elif direction == [-1, -1] and \
-                [(new_position[0]+1) % self.play_field_size[0], new_position[1]] in body_copy and \
-                [(new_position[0]), (new_position[1]+1) % self.play_field_size[1]] in body_copy:  # move NW
-            return False
-        elif direction == [-1, 1] and \
-                [(new_position[0]+1) % self.play_field_size[0], new_position[1]] in body_copy and \
-                [(new_position[0]), (new_position[1]-1) % self.play_field_size[1]] in body_copy:  # move NE
-            return False
+
+        # extended version of the algorithm
+        # if direction == [1, 1] and \
+        #         [(new_position[0]-1) % self.play_field_size[0], new_position[1]] in body_copy and \
+        #         [(new_position[0]), (new_position[1]-1) % self.play_field_size[1]] in body_copy:  # move SE
+        #     return False
+        # elif direction == [1, -1] and \
+        #         [(new_position[0]-1) % self.play_field_size[0], new_position[1]] in body_copy and \
+        #         [(new_position[0]), (new_position[1]+1) % self.play_field_size[1]] in body_copy:  # move SW
+        #     return False
+        # elif direction == [-1, -1] and \
+        #         [(new_position[0]+1) % self.play_field_size[0], new_position[1]] in body_copy and \
+        #         [(new_position[0]), (new_position[1]+1) % self.play_field_size[1]] in body_copy:  # move NW
+        #     return False
+        # elif direction == [-1, 1] and \
+        #         [(new_position[0]+1) % self.play_field_size[0], new_position[1]] in body_copy and \
+        #         [(new_position[0]), (new_position[1]-1) % self.play_field_size[1]] in body_copy:  # move NE
+        #     return False
+        # else:  # move S, W, N, E are valid since snake head does not overlap with its body
+        #     pass
+
+        # compact version of the algorithm
+        if direction[0] in (-1, 1) and direction[1] in (-1, 1):
+            if [(new_position[0] - direction[0]) % self.play_field_size[0], new_position[1]] in body_copy and \
+                    [(new_position[0]),
+                     (new_position[1] - direction[1]) % self.play_field_size[1]] in body_copy:  # move SE
+                return False
         else:  # move S, W, N, E are valid since snake head does not overlap with its body
             pass
 

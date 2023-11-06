@@ -16,6 +16,22 @@ class Snake_test(unittest.TestCase):
         head_position = snake.get_head_position()
         self.assertEqual(head_position, position, f'wrong head position ({head_position} instead of {position})')
 
+    def test_check_initial_move_nofood(self):
+        snake = Snake()
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        new_position = [1, 0]
+        self.assertTrue(snake.check_move(new_position, False))
+
+    def test_check_initial_move_food(self):
+        snake = Snake()
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        new_position = [1, 0]
+        self.assertTrue(snake.check_move(new_position, True))
+
     def test_check_move_nofood_nooverlap(self):
         snake = Snake()
         snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
