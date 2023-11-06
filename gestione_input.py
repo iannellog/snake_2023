@@ -8,6 +8,7 @@ Created on Mon Sep 11 18:00:31 2023
 import json
 from PIL import Image
 import sys
+import os
 
 from abc import ABC, abstractmethod
 
@@ -62,6 +63,7 @@ def convert_image_to_json(image_path):
     json_file_path = os.path.join(os.path.dirname(image_path), nome_file_json)
     with open(json_file_path, "w") as json_file:
         json.dump(dati_immagine, json_file, indent=2)
+        json_file.close()
 
     return json_file_path
 
@@ -122,11 +124,13 @@ def carico_dati(game_file):
         try:
             with open(game_file, 'r') as file:
                 game = json.load(file)
+                file.close()
                 field_out = game['field_out']
                 campo_gioco = game['field_in']
                 # Richiamo Strategy Design Pattern
                 g = type_of_input(campo_gioco)
                 field = json.load(g)
+                g.close()
                 start = game['start']
                 mosse = game['moves']
                 righe = field['rows']

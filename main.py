@@ -7,6 +7,8 @@ from snake import Snake
 from play_field import Play_field
 
 from json import load
+import gestione_input as gi
+
 
 
 def play(game_file: str) -> int:
@@ -14,12 +16,23 @@ def play(game_file: str) -> int:
     # Snake game
 
     # get layout and moves
-    with open(game_file, 'r') as file:
-        game_info = load(file)
-        file.close()
-    with open(game_info["field_in"], 'r') as file:
-        field_info = load(file)
-        file.close()
+    # with open(game_file, 'r') as file:
+    #     game_info = load(file)
+    #     file.close()
+    # with open(game_info["field_in"], 'r') as file:
+    #     field_info = load(file)
+    #     file.close()
+    start, mosse, food, blocks, righe, colonne, field_out = gi.carico_dati(game_file)
+    game_info = {
+        "start": start,
+        "moves": mosse
+    }
+    field_info = {
+        "rows": righe,
+        "cols": colonne,
+        "blocks": blocks,
+        "food": food
+    }
 
     # create snake object (including an empty initial tail)
     snake = Snake()
@@ -43,7 +56,18 @@ def play(game_file: str) -> int:
         if not valid_move:
             break
 
-    return len(snake.body)
+    # return len(snake.body)
+    lunghezza_serpente = gi.restituisco_dati(
+        snake.body,
+        snake.tail,
+        play_field.food,
+        play_field.obstacles,
+        righe,
+        colonne,
+        field_out
+    )
+    # print(f"La lunghezza del serpente alla fine del gioco è: {lunghezza_serpente}")
+    return lunghezza_serpente
 
 
 if __name__ == "__main__":
