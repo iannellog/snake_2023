@@ -14,14 +14,6 @@ import gestione_input as gi
 def play(game_file: str) -> int:
 
     # Snake game
-
-    # get layout and moves
-    # with open(game_file, 'r') as file:
-    #     game_info = load(file)
-    #     file.close()
-    # with open(game_info["field_in"], 'r') as file:
-    #     field_info = load(file)
-    #     file.close()
     start, mosse, food, blocks, righe, colonne, field_out = gi.carico_dati(game_file)
     game_info = {
         "start": start,
@@ -56,7 +48,6 @@ def play(game_file: str) -> int:
         if not valid_move:
             break
 
-    # return len(snake.body)
     lunghezza_serpente = gi.restituisco_dati(
         snake.body,
         snake.tail,
@@ -71,7 +62,8 @@ def play(game_file: str) -> int:
 
 
 if __name__ == "__main__":
-    print('Snake body length: ', play('data/gamefile_02.json'))
+    file_name = input('Dammi il nome del file con i dati di ingresso: ')
+    print('Snake body length: ', play(f'data/{file_name}'))
     # display play field and snake (including its path)
     # print('moves:', game_info["moves"])
     # print('snake body:', snake.body)
