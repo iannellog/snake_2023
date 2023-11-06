@@ -6,6 +6,7 @@ from unittest import TestCase
 
 from main import play
 
+
 class TestSuite(TestCase):
     def test_01(self):
         self.assertEqual(test_passed("data/gamefile_01.json", "data/final_field_01.png", "data/expected_01.png", 4), "OK")
@@ -66,15 +67,18 @@ def test_passed(game_file: str, final_field: str, expected_field: str, expected_
 
     return "OK"
 
+
 def are_equal(final_field: str, expected_field: str) -> bool:
     a1 = load_image(final_field)
     a2 = load_image(expected_field)
 
     return np.array_equal(a1, a2)
 
+
 def load_image(filename: str) -> np.ndarray:
     img = Image.open(filename)
     return np.array(img)
+
 
 if __name__ == '__main__':
     unittest.main()
