@@ -13,7 +13,7 @@ class Play_field:
     - list of obstacles (coordinates)
     - list of food (coordinates)
 
-    position are represented by a list [row, column]
+    positions of obstacles and food are represented by a list [row, column]
     """
 
     def __init__(self, height, width, obstacles, food):
