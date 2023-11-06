@@ -45,6 +45,16 @@ class Snake_test(unittest.TestCase):
         snake.body = [[1, 0], [1, 1], [0, 0]]
         self.assertFalse(snake.check_move([0, 1], True))
 
+    def test_check_move_around_nofood_nocross(self):
+        snake = Snake()
+        snake.body = [[0, 9], [0, 0], [9, 9]]
+        self.assertTrue(snake.check_move([0, 1], False))
+
+    def test_check_move_around_food_cross(self):
+        snake = Snake()
+        snake.body = [[0, 9], [0, 0], [9, 9]]
+        self.assertFalse(snake.check_move([9, 0], True))
+
     def test_update(self):
         snake = Snake()
         snake.place_in_start_position([0, 0])
