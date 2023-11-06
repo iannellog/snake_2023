@@ -24,9 +24,9 @@ class Play_field:
         """
         check if move is valid for play field and if snake finds food
         :param move: move to be taken by the snake
-        :return: if the snake has found food
+        :return: tuple(if the move is valid, if the snake has found food)
         """
-        return False
+        return True, False
 
     def update(self, move):
         """
