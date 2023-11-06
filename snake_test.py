@@ -34,50 +34,86 @@ class Snake_test(unittest.TestCase):
 
     def test_check_move_nofood_nooverlap(self):
         snake = Snake()
-        snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
-        snake.play_field_size = [10, 10]
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([0, 1], True)
+        snake.update([1, 1], True)
+        snake.update([1, 0], True)
+        # snake.body: [[1, 0], [1, 1], [0, 1], [0, 0]]
         self.assertTrue(snake.check_move([2, 0], False))
 
     def test_check_move_nofood_overlap(self):
         snake = Snake()
-        snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
-        snake.play_field_size = [10, 10]
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([0, 1], True)
+        snake.update([1, 1], True)
+        snake.update([1, 0], True)
+        # snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
         self.assertFalse(snake.check_move([0, 1], False))
 
     def test_check_move_food_nooverlap(self):
         snake = Snake()
-        snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
-        snake.play_field_size = [10, 10]
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([0, 1], True)
+        snake.update([1, 1], True)
+        snake.update([1, 0], True)
+        # snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
         self.assertTrue(snake.check_move([2, 0], True))
 
     def test_check_move_food_overlap(self):
         snake = Snake()
-        snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
-        snake.play_field_size = [10, 10]
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([0, 1], True)
+        snake.update([1, 1], True)
+        snake.update([1, 0], True)
+        # snake.body = [[1, 0], [1, 1], [0, 1], [0, 0]]
         self.assertFalse(snake.check_move([0, 1], True))
 
     def test_check_move_nofood_nocross(self):
         snake = Snake()
-        snake.body = [[1, 0], [1, 1], [0, 0]]
-        snake.play_field_size = [10, 10]
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([1, 1], True)
+        snake.update([1, 0], True)
+        # snake.body = [[1, 0], [1, 1], [0, 0]]
         self.assertTrue(snake.check_move([0, 1], False))
 
     def test_check_move_food_cross(self):
         snake = Snake()
-        snake.body = [[1, 0], [1, 1], [0, 0]]
-        snake.play_field_size = [10, 10]
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([1, 1], True)
+        snake.update([1, 0], True)
+        # snake.body = [[1, 0], [1, 1], [0, 0]]
         self.assertFalse(snake.check_move([0, 1], True))
 
     def test_check_move_around_nofood_nocross(self):
         snake = Snake()
-        snake.body = [[0, 9], [0, 0], [9, 9]]
-        snake.play_field_size = [10, 10]
+        position = [9, 9]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([0, 0], True)
+        snake.update([0, 9], True)
+        # snake.body = [[0, 9], [0, 0], [9, 9]]
         self.assertTrue(snake.check_move([9, 0], False))
 
     def test_check_move_around_food_cross(self):
         snake = Snake()
-        snake.body = [[0, 9], [0, 0], [9, 9]]
-        snake.play_field_size = [10, 10]
+        position = [9, 9]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        snake.update([0, 0], True)
+        snake.update([0, 9], True)
+        # snake.body = [[0, 9], [0, 0], [9, 9]]
         self.assertFalse(snake.check_move([9, 0], True))
 
     def test_update_nofood(self):
