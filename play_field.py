@@ -12,9 +12,8 @@ class Play_field:
     - width
     - list of obstacles (coordinates)
     - list of food (coordinates)
-    - snake position
 
-    positions are represented by a list [row, column]
+    position are represented by a list [row, column]
     """
 
     def __init__(self, height, width, obstacles, food):
@@ -22,42 +21,21 @@ class Play_field:
         self.width = width
         self.obstacles = obstacles
         self.food = food
-        self.snake_position = None
 
-    def place_snake(self, initial_position):
+    def check_move(self, snake_position, move):
         """
-        store the initial position of the head of the snake
-        :param initial_position: initial position of the head of the snake
-        :return: None
+        check if move from snake position is valid for play field
+        compute new head position and check if it contains food
+        :param snake_position: position of snake head
+        :param move: move to be taken
+        :return: tuple(if the move is valid, new snake head position, if it contains food)
         """
-        self.snake_position = list(initial_position)
+        return True, [0, 0], False
 
-    def check_move(self, move):
-        """
-        check if move is valid for play field and if snake finds food
-        :param move: move to be taken by the snake
-        :return: tuple(if the move is valid, if the snake has found food)
-        """
-        return True, False
-
-    def update(self, move):
+    def update(self, snake_position):
         """
         update play field
-        :param move: move to be taken by the snake
+        :param snake_position: new position of snake head
         :return: None
         """
-        if move == 'S':
-            self.snake_position[0] = self.snake_position[0] + 1
-        else:
-            raise ValueError(f'unknown move ({move})')
-
-        if self.snake_position[0] < 0:  # snake move to bottom
-            self.snake_position[0] = self.height - 1
-        elif self.snake_position[0] == self.height: # snake move to top
-            self.snake_position[0] = 0
-
-        if self.snake_position[1] < 0:  # snake move to right border
-            self.snake_position[1] = self.width - 1
-        elif self.snake_position[1] == self.height: # snake move to left border
-            self.snake_position[1] = 0
-
+        pass

@@ -12,28 +12,35 @@ class Snake:
     def __init__(self):
         pass
 
-    def check_move(self, move, eats):
+    def place_in_start_position(self, initial_position):
         """
-        check if the move is valid for the snake taking into account if the snake eats food
-        :param move: move to be taken
-        :param eats: if the snake has found food
+        place the snake in the play field at a given initial position
+        :param initial_position: initial position
+        :return: None
+        """
+        pass
+
+    def get_head_position(self):
+        """
+        return the snake head position
+        :return: snake head position
+        """
+        return [0, 0]
+
+    def check_move(self, new_position, eats):
+        """
+        check if the new position is valid for the snake taking into account if it contains food
+        :param new_position: new position of the snake head
+        :param eats: if the new position contains food
         :return: if the move is valid
         """
         return True
 
-    def place_in_start_position(self, play_field, initial_position):
+    def update(self, new_position, eats):
         """
-        place the snake in the play field at a given initial position
-        :param play_field: play field
-        :param initial_position: initial position
-        :return:
-        """
-        pass
-
-    def update(self, move):
-        """
-        update the snake body and its path according to the move
-        :param move: move to be taken
+        update the snake body and its path according to the new position and it it contains food
+        :param eats: if the new position contains food
+        :param new_position: new position of the snake head
         :return: None
         """
         pass

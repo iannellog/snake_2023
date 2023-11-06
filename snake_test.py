@@ -4,24 +4,29 @@ from snake import Snake
 
 class Snake_test(unittest.TestCase):
 
-    def test_check_move(self):
+    def test_create(self):
         snake = Snake()
         self.assertIsInstance(snake, Snake, 'cannot create a Snake instance')
-        snake.place_in_start_position(None, (0, 0))
-        self.assertTrue(snake.check_move('S', False))
 
     def test_place_in_start_position(self):
         snake = Snake()
-        self.assertIsInstance(snake, Snake, 'cannot create a Snake instance')
-        snake.place_in_start_position(None, (0, 0))
-        # check if the snake has been correctly placed in the play field
+        position = [0, 0]
+        snake.place_in_start_position(position)
+        head_position = snake.get_head_position()
+        self.assertEqual(head_position, position, f'wrong head position ({head_position} instead of {position})')
+
+    def test_check_move_nofood_valid(self):
+        snake = Snake()
+        snake.place_in_start_position([0, 0])
+        self.assertTrue(snake.check_move([0, 1], False))
 
     def test_update(self):
         snake = Snake()
-        self.assertIsInstance(snake, Snake, 'cannot create a Snake instance')
-        snake.place_in_start_position(None, (0, 0))
-        snake.update('S')
-        # check if the move has been correctly performed
+        snake.place_in_start_position([0, 0])
+        new_position = [0, 0]
+        snake.update(new_position, False)
+        head_position = snake.get_head_position()
+        self.assertEqual(head_position, new_position, f'wrong head position ({head_position} instead of {new_position})')
 
 
 if __name__ == '__main__':
