@@ -24,7 +24,7 @@ snake = Snake()
 # create play field object
 play_field = Play_field(field_info["rows"], field_info["cols"], field_info["blocks"], field_info["food"])
 # put snake in start position
-snake.place_in_start_position(game_info["start"])
+snake.place_in_start_position(game_info["start"], [field_info["rows"], field_info["cols"]])
 
 # start the game
 for m in game_info["moves"].split(' '):
