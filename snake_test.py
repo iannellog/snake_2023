@@ -80,15 +80,33 @@ class Snake_test(unittest.TestCase):
         snake.play_field_size = [10, 10]
         self.assertFalse(snake.check_move([9, 0], True))
 
-    def test_update(self):
+    def test_update_nofood(self):
         snake = Snake()
         position = [0, 0]
         play_field_size = [10, 10]
         snake.place_in_start_position(position, play_field_size)
-        new_position = [0, 0]
+        new_position = [1, 0]
+        len_snake_body_before = len(snake.body)
+        len_snake_tail_before = len(snake.tail)
         snake.update(new_position, False)
         head_position = snake.get_head_position()
         self.assertEqual(head_position, new_position, f'wrong head position ({head_position} instead of {new_position})')
+        self.assertEqual(len_snake_body_before, len(snake.body))
+        self.assertEqual(len_snake_tail_before+1, len(snake.tail))
+
+    def test_update_food(self):
+        snake = Snake()
+        position = [0, 0]
+        play_field_size = [10, 10]
+        snake.place_in_start_position(position, play_field_size)
+        new_position = [1, 0]
+        len_snake_body_before = len(snake.body)
+        len_snake_tail_before = len(snake.tail)
+        snake.update(new_position, True)
+        head_position = snake.get_head_position()
+        self.assertEqual(head_position, new_position, f'wrong head position ({head_position} instead of {new_position})')
+        self.assertEqual(len_snake_body_before+1, len(snake.body))
+        self.assertEqual(len_snake_tail_before, len(snake.tail))
 
 
 if __name__ == '__main__':

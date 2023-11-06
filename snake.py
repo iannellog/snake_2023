@@ -124,4 +124,6 @@ class Snake:
         :param new_position: new position of the snake head
         :return: None
         """
-        pass
+        self.body.insert(0, new_position)
+        if not eats:
+            self.tail.insert(0, self.body.pop(-1))
