@@ -31,6 +31,9 @@ def play(game_file: str) -> int:
     # create play field object
     play_field = Play_field(field_info["rows"], field_info["cols"], field_info["blocks"], field_info["food"])
     # put snake in start position
+    if game_info["start"] in field_info["food"]:  # test added to pass test 09
+        # there is food in start position
+        field_info["food"].remove(game_info["start"])  # remove food env though snake does not grow
     snake.place_in_start_position(game_info["start"], [field_info["rows"], field_info["cols"]])
 
     # start the game
